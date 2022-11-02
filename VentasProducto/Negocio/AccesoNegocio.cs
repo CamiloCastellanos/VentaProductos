@@ -59,5 +59,41 @@ namespace Negocio
         }
 
         #endregion
+
+        #region Producto
+        /// <summary>
+        /// Creacion del Producto 
+        /// </summary>
+        /// <param name="nuevoProducto">Informacion del procuto a registrar</param>
+        /// <returns>Retorna si fue creado exitosamente</returns>
+        public bool CreacionProducto(Producto nuevoProducto)
+        {
+            try
+            {
+                return new ProductoBO().CreacionProducto(nuevoProducto);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Actualizacion de Informacion del cliente 
+        /// </summary>
+        /// <param name="informacionProducto">Informacion del cliente a actualizar </param>
+        /// <returns>Retorna si fue actualizado exitosamente</returns>
+        public bool ActualizacionProducto(Producto informacionProducto)
+        {
+            try
+            {
+                return new ProductoBO().ActualizacionProducto(informacionProducto);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }
