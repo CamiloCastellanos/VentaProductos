@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ventas" Class="VentasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=CASTE-PC;Initial Catalog=Ventas;Integrated Security=True" SettingsObjectName="Repositorio.Properties.Settings" SettingsPropertyName="VentasConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cliente" Member="Cliente">
+    <Type Name="Cliente">
+      <Column Name="Cliente_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cliente_Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Cliente_Apellido" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Cliente_Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TipoDocumento_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente_Documento" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Cliente_Estado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Cliente_FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Cliente_FechaActualizacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Cliente_Venta" Member="Venta" ThisKey="Cliente_Id" OtherKey="Cliente_Id" Type="Venta" />
+      <Association Name="TipoDocumento_Cliente" Member="TipoDocumento" ThisKey="TipoDocumento_Id" OtherKey="TipoDocumento_Id" Type="TipoDocumento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Producto" Member="Producto">
+    <Type Name="Producto">
+      <Column Name="Producto_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Producto_Nombre" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Producto_Descripcion" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Producto_ValorUnitario" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Producto_Estado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Producto_FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Producto_FechaActualizacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Producto_VentaProducto" Member="VentaProducto" ThisKey="Producto_Id" OtherKey="Producto_Id" Type="VentaProducto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoDocumento" Member="TipoDocumento">
+    <Type Name="TipoDocumento">
+      <Column Name="TipoDocumento_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TipoDocumento_Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TipoDocumento_Descripcion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TipoDocumento_Estado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TipoDocumento_Cliente" Member="Cliente" ThisKey="TipoDocumento_Id" OtherKey="TipoDocumento_Id" Type="Cliente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Venta" Member="Venta">
+    <Type Name="Venta">
+      <Column Name="Venta_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cliente_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Venta_FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Venta_Estado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Venta_VentaProducto" Member="VentaProducto" ThisKey="Venta_Id" OtherKey="Venta_Id" Type="VentaProducto" />
+      <Association Name="Cliente_Venta" Member="Cliente" ThisKey="Cliente_Id" OtherKey="Cliente_Id" Type="Cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VentaProducto" Member="VentaProducto">
+    <Type Name="VentaProducto">
+      <Column Name="VentaProducto_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Venta_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Producto_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VentaProducto_ValorUnitario" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="VentaProducto_Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Producto_VentaProducto" Member="Producto" ThisKey="Producto_Id" OtherKey="Producto_Id" Type="Producto" IsForeignKey="true" />
+      <Association Name="Venta_VentaProducto" Member="Venta" ThisKey="Venta_Id" OtherKey="Venta_Id" Type="Venta" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
