@@ -1,0 +1,11 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/VentasProducto/Entidades/obj/Debug
+/VentasProducto/Negocio/obj/Debug
+/VentasProducto/Repositorio/obj/Debug
+/VentasProducto/VentasProductoAPI/bin
+/VentasProducto/VentasProductoAPI/bin
+/VentasProducto/VentasProductoAPI/obj/Debug
+/VentasProducto/packages
